@@ -1,6 +1,8 @@
-import React from 'react'
+import { useState } from 'react'
 
 const Tour = ({ image, name, price, info, id, removeTour }) => {
+  const [showMore, setShowMore] = useState(false)
+
   return (
     <article className='single-tour'>
       <div>
@@ -12,8 +14,10 @@ const Tour = ({ image, name, price, info, id, removeTour }) => {
       <div className='tour-info'>
         <h5>{name}</h5>
         <p>
-          {info}
-          <button className='info-btn'> Read More</button>
+          {showMore ? info + ' ' : info.substring(0, 155) + '... '}
+          <button className='info-btn' onClick={() => setShowMore(!showMore)}>
+            {showMore ? 'Read Less' : 'Read More'}
+          </button>
         </p>
       </div>
       <button
